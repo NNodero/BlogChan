@@ -204,8 +204,12 @@ app.delete('/post/:id',(req,res)=>{
         })
     })
 })
+
+
 app.post('/write',(req,res)=>{
-    const token =  req.cookies.token;
+    const token = app.get('/',(req,res)=>{
+        req.cookies.token;
+   })
     if(!token) return res.json('You cannot post articles')
     jwt.verify(token,'thisismyfirsttime',(err,result)=>{
         if(err) return res.json('Token is invalid')
