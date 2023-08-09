@@ -17,7 +17,7 @@ const sessionstorage = require('node-sessionstorage')
 app.use(express());
 
 app.use(cors({
-    origin:["https://blogchan.onrender.com"],
+    origin:["https://blogchan.onrender.com", "http://localhost:3001/"],
     methods:["POST","GET","DELETE","PUT"],
     credentials: true,
 
@@ -136,7 +136,7 @@ app.post('/login',(req,res)=>{
                     res.cookie("token",accesstoken,{
                         path:'/',
                         sameSite:'None',
-                        secure
+                        secure:true
                     }).json({getdata:result,userdata:user})}
 
                 else{ return res.json({Error:`Password didn't match`})}
