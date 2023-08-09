@@ -1,0 +1,122 @@
+.maincontainer{
+
+    padding: 2rem 17rem;
+    height: 50rem;
+    gap: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    
+    .left{
+        flex: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        .title{
+            .input{
+                width: 62.5rem;
+                height: 2.5rem;
+                font-size: 15px;
+                border:1px solid rgb(207, 203, 203);
+                padding: 0px 20px;
+            }
+            
+        }
+        .desc{
+            height: 30rem;
+            border: none;
+        }
+        
+    }
+    .right{
+  
+
+        flex: 20%;
+        display: flex;
+        flex-direction: column;
+       
+        gap: 25px;
+
+        .first{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid lightgray;  
+            padding:40px 20px;    
+            .h1{
+                font-size: 10px;
+            } 
+            .text{
+                font-size: 12.5px;
+            }
+            .text_upload{
+                font-size: 12.5px;
+                color: red;
+                &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+            }
+         .btnbox{
+                display: flex;
+                justify-content: space-between;
+                .btn1{
+                    border: none;
+                    background-color: rgb(212, 235, 13);
+                     padding: 10px 15px;   
+                    
+                     cursor: pointer; 
+                     &:hover{
+                        background-color: rgb(189, 186, 42);      
+
+                    }
+
+                }
+                .btn2{
+                    background-color: rgb(20, 172, 20);      
+                    padding: 10px 15px;  
+                    cursor: pointer; 
+                    color: white;
+                    border:none;
+
+                    &:hover{
+                        background-color: rgb(15, 99, 15);      
+
+                    }
+
+                }
+                .btn3{
+                    background-color: rgb(105, 121, 105);      
+                    padding: 10px 15px;  
+                    cursor: pointer; 
+                    color: white;
+                    border:none;
+
+                   
+
+                }
+                 
+            }
+        }
+        .second{
+            padding:40px 30px;     
+            border: 1px solid lightgray;  
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            .heading{
+                font-size: 18px;
+            }
+            .items{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                .lists{
+                    display: flex;
+                    gap: 6px;
+                }
+            }
+
+        }
+    }
+}

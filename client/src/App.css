@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  font-family: merrifont;
+
+}
+@font-face {
+  font-family:merrifont ;
+  src: url('./Assests/fonts/Merriweather/Merriweather-Regular.ttf');
+}
+@font-face {
+  font-family:merrifontblack ;
+  src: url('./Assests/fonts/Merriweather/Merriweather-Black.ttf');
+}
+.scrollup{
+  position:fixed;
+  bottom: 5rem;
+  right: 10rem;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: rgb(95, 93, 93);
+  color:white;
+  cursor: pointer;
+  
+ 
+}
