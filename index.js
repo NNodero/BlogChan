@@ -16,12 +16,7 @@ const sessionstorage = require('node-sessionstorage')
 
 app.use(express());
 
-app.use(cors({
-    origin:"https://frontend-alvh.onrender.com",
-    methods:["POST","GET","DELETE","PUT"],
-    credentials: true,
-
-}));
+app.use(cors());
 
 app.use(express.json())
 app.use(cookieParser())
