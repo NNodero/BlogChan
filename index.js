@@ -16,16 +16,16 @@ const sessionstorage = require('node-sessionstorage')
 
 app.use(express());
 
-app.use(cors());
+app.use(cors({
+    origin:"https://blogchan.onrender.com",
+    methods:["POST","GET","DELETE","PUT"],
+    credentials: true,
+
+}));
 
 app.use(express.json())
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
 
 const PORT = process.env.PORT || 3001;
 
