@@ -67,7 +67,7 @@ const publish= async ()=>{
       category:cat,
       img:img,
       uid:userdata.id,
-    }, { withCredentials: true }).then((res)=>{
+    }).then((res)=>{
      console.log(res)
     }).catch((err)=>{
      console.log(err)
@@ -81,7 +81,7 @@ const publish= async ()=>{
       img: await upload(),
       uid:userdata.id,
       date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),    
-    }, { withCredentials: true }).then((res)=>{
+    }).then((res)=>{
       if(res.data.affectedRows >= 1 ){
         seterr('Successfully posted')
       } 
