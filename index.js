@@ -16,14 +16,16 @@ const sessionstorage = require('node-sessionstorage')
 
 app.use(express());
 
-app.use(cors());
+// app.use(cors());
 
-// app.use(cors({
-//     origin:["https://blogchan.onrender.com", "http://localhost:3001/"],
-//     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-//     credentials: true,
+app.use(cors({
+    origin:["https://blogchan.onrender.com", "http://localhost:3001/"],
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    credentials: true,
+    exposedHeaders: ["set-cookie"],
 
-// }));
+
+}));
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "https://blogchan.onrender.com");

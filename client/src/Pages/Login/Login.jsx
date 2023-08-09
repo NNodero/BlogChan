@@ -16,7 +16,7 @@ export default function Login() {
 
   const submit = async (data)=>{
     
-    await axios.post('/login', data).then((res)=>{
+    await axios.post('/login', data,{ withCredentials: true }).then((res)=>{
      if(res.data.getdata===true){
       sessionStorage.setItem('user',JSON.stringify(res.data.userdata))
       nav('/')
