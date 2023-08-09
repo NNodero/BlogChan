@@ -17,7 +17,7 @@ const sessionstorage = require('node-sessionstorage')
 app.use(express());
 
 app.use(cors({
-    origin:"https://blogchan.onrender.com",
+    origin:["https://blogchan.onrender.com"],
     methods:["POST","GET","DELETE","PUT"],
     credentials: true,
 
