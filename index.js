@@ -20,10 +20,9 @@ app.use(express());
 // app.use(cors());
 
 app.use(cors({
-    origin:["https://blogchan.onrender.com", "http://localhost:3000"],
+    origin:["https://blogchan.onrender.com"],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
     credentials: true,
-    exposedHeaders: ["set-cookie"],
 
 
 }));
@@ -39,7 +38,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3005;
 
 app.listen(PORT,()=>{
     console.log(`conected to server ${PORT}`)
