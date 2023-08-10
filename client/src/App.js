@@ -18,8 +18,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function App() {
 
-  const [auth, setauth] = useState(false) 
   const[userdata,setuserdata]= useState({})
+  const[token,settoken]= useState()
+
   const [ backtotop ,setbacktotop] =useState(false)
 
   useEffect(()=>{
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <LoginContext.Provider value={{auth, setauth, userdata,setuserdata}}>
+      <LoginContext.Provider value={{userdata,setuserdata,token,settoken}}>
         <Router>
           <Navbar/>
          
@@ -48,7 +49,7 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/post/:id' element={<Single/>}/>
-            <Route path='/write' element={<Write/>}/>
+            {userdata.username ? <Route path='/write' element={<Write/>}/>  : <Route path='/login' element={<Login/>}/>}
             <Route path='/:category' element={<Category/> }/>
             <Route path='/post/:id/edit' element={<Write/>}/>
 

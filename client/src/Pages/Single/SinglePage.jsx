@@ -34,7 +34,14 @@ useEffect(()=>{
 
 
    const deletepost = async ()=>{
-      await axios.delete(`/post/${newID}`,{ withCredentials: true }).then((res)=>{
+    const token = JSON.parse(sessionStorage.getItem("token"));
+
+      await axios.delete(`/post/${newID}`,{
+        headers:{
+        'Authorization': `Bearer ${token}`
+      },
+        withCredentials: true
+      }).then((res)=>{
         if(res.data.affectedRows === 0){
           seterror("This is not your post")
         } 

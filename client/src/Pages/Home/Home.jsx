@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react'
 import style from './Home.module.scss'
 import { Link } from 'react-router-dom'
 
+
+
 import axios from 'axios'
 
 export default function Home() {
   const [post, setpost] =useState([{}])
+
+
+
+
 
   useEffect(()=>{
     const fetchpost = async ()=>{

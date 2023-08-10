@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import s from './write.module.scss'
@@ -45,7 +45,6 @@ const setchange =(e)=>{
 
 
 
-
 const publish= async ()=>{
   if(title === ''){
     seterr('Fill the title')
@@ -59,6 +58,8 @@ const publish= async ()=>{
 
   }
   else{
+const token = JSON.parse(sessionStorage.getItem("token"));
+
    
     state? await axios.put(`/update/${id}`,{
       title,
@@ -67,6 +68,11 @@ const publish= async ()=>{
       category:cat,
       img:img,
       uid:userdata.id,
+    },{
+      headers:{
+      'Authorization': `Bearer ${token}`
+    },
+      withCredentials: true,
     }).then((res)=>{
      console.log(res)
     }).catch((err)=>{
@@ -81,6 +87,11 @@ const publish= async ()=>{
       img: await upload(),
       uid:userdata.id,
       date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),    
+    },{
+      headers:{
+      'Authorization': `Bearer ${token}`
+    },
+      withCredentials: true,
     }).then((res)=>{
       if(res.data.affectedRows >= 1 ){
         seterr('Successfully posted')

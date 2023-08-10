@@ -19,7 +19,9 @@ export default function Login() {
     await axios.post('/login', data,{ withCredentials: true }).then((res)=>{
      if(res.data.getdata===true){
       sessionStorage.setItem('user',JSON.stringify(res.data.userdata))
+      sessionStorage.setItem('token',JSON.stringify(res.data.token))
       nav('/')
+      window.location.reload();
      }
      else{
       seterror(res.data.Error)
@@ -30,7 +32,7 @@ export default function Login() {
       alert(err)
     })
   }   
-
+ 
  
    
   return (

@@ -10,7 +10,8 @@ const jwt = require('jsonwebtoken')
 const {createTokens} =require('./JWT.js');
 const multer = require('multer');
 const path = require('path');
-const sessionstorage = require('node-sessionstorage')
+ 
+
 
 
 
@@ -19,7 +20,7 @@ app.use(express());
 // app.use(cors());
 
 app.use(cors({
-    origin:["https://blogchan.onrender.com", "http://localhost:3001/"],
+    origin:["https://blogchan.onrender.com", "http://localhost:3000"],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
     credentials: true,
     exposedHeaders: ["set-cookie"],
@@ -44,13 +45,11 @@ app.listen(PORT,()=>{
     console.log(`conected to server ${PORT}`)
 })
 
-app.get('/',(req,res)=>{
-    res.json('hi')
-})
+
 
 const storage = multer.diskStorage({
     destination:(req, file, cb)=>{
-        cb(null, '../client/src/Assests/Images')
+        cb(null, './client/src/Assests/Images')
     },
     filename:(req,file,cb)=>{
         cb(null, Date.now()+ path.extname(file.originalname))
@@ -89,9 +88,7 @@ const verifyUser = (req,res,next)=>{
     }
 
 }
-// app.get('/',verifyUser,(req,res)=>{
-//     return res.json({user:req.user})
-// })
+
 
 // app.post('/logout',(req,res)=>{
 //     res.clearCookie('token').json('done')
@@ -131,6 +128,7 @@ app.post('/register', (req,res)=>{
     })            
 })
 
+
 app.post('/login',(req,res)=>{
 
     const q = 'SELECT * FROM user WHERE username = ?'
@@ -144,11 +142,10 @@ app.post('/login',(req,res)=>{
                 if(result===true)  {
                     const user = {id:data[0].id, username:data[0].username, userimg:data[0].userimg};
                     const accesstoken = createTokens(user)
-                    res.cookie("token",accesstoken,{
-                        path:'/',
-                        sameSite:'None',
-                        secure:true
-                    }).json({getdata:result,userdata:user})}
+
+                    res.json({getdata:result,userdata:user,token:accesstoken})
+                }
+
 
                 else{ return res.json({Error:`Password didn't match`})}
             })        
@@ -189,7 +186,10 @@ app.get('/:category',(req,res)=>{
 })
 
 app.delete('/post/:id',(req,res)=>{
-    const token =  req.cookies.token;
+    const headertoken = req.headers.authorization;
+   const accesstoken = headertoken.split(" ");
+   const token = accesstoken[1];
+
     if(!token) return res.json('you are not authenicted to delete this post')
 
     jwt.verify(token,'thisismyfirsttime', (err,result)=>{
@@ -207,10 +207,11 @@ app.delete('/post/:id',(req,res)=>{
 
 
 app.post('/write',(req,res)=>{
-    const token = app.get('/',(req,res)=>{
-        req.cookies.token;
-   })
-    if(!token) return res.json('You cannot post articles')
+   const headertoken = req.headers.authorization;
+   const accesstoken = headertoken.split(" ");
+   const token = accesstoken[1];
+
+   if(!token) return res.json('You cannot post articles')
     jwt.verify(token,'thisismyfirsttime',(err,result)=>{
         if(err) return res.json('Token is invalid')
     
@@ -235,7 +236,9 @@ app.post('/write',(req,res)=>{
 })
 
 app.put('/update/:id',(req,res)=>{
-    const token = req.cookies.token;
+    const headertoken = req.headers.authorization;
+    const accesstoken = headertoken.split(" ");
+    const token = accesstoken[1];
     if(!token) return res.json("You are not authenctied")
 
     jwt.verify(token, 'thisismyfirsttime', (err,result)=>{

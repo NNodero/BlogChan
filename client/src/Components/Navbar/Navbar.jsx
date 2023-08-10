@@ -4,14 +4,16 @@ import style from './Navbar.module.scss'
 import {Link} from 'react-router-dom'
 import { LoginContext } from '../../Contexts/LoginContext' 
 import { useContext } from 'react'
-import axios from 'axios'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useNavigate} from "react-router-dom"
 
 
 export default function Navbar() {
 
   const {userdata, setuserdata} = useContext(LoginContext)
   const [open, setopen] = useState(false)
+  
+  const nav = useNavigate()
 
  
 useEffect(()=>{
@@ -30,13 +32,9 @@ useEffect(()=>{
  }
 
 const updateauth = ()=>{
-    // await axios.post('/logout',{},{ withCredentials: true }).then((res)=>{
       sessionStorage.clear()
-
-    //   setuserdata('')
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })
+      nav('/')
+      window.location.reload()
    
   }
   return (
