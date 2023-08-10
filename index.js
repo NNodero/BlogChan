@@ -20,7 +20,7 @@ app.use(express());
 // app.use(cors());
 
 app.use(cors({
-    origin:["https://blogchan.onrender.com"],
+    origin:["https://blogchan.onrender.com", "http://localhost:3002"],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
     credentials: true,
 
@@ -38,7 +38,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3009;
 
 app.listen(PORT,()=>{
     console.log(`conected to server ${PORT}`)
@@ -105,14 +105,15 @@ app.post('/register', (req,res)=>{
         }
         else{
 
-            const q = 'INSERT INTO user (`username`, `email`, `phone`, `password`) VALUES (?)'
+            const q = 'INSERT INTO user (`username`, `email`, `phone`, `password`,`userimg`) VALUES (?)'
 
             bcrypt.hash(req.body.password,salt).then((hash)=>{
                 const v =[
                     req.body.username,
                     req.body.email,
                     req.body.phone,
-                    hash
+                    hash,
+                    req.body.userimg
                 ]
                 db.query(q,[v],(err,data)=>{
                     if(err) {
