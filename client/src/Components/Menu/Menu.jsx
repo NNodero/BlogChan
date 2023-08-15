@@ -10,7 +10,7 @@ export default function Menu() {
      await axios.get("/post").then((res)=>{
       setpost(res.data)
      }).catch((err)=>{
-      console.log(err)
+      alert("Something went wrong")
      })
 
     }
