@@ -19,7 +19,7 @@ export default function Home() {
       setpost(res.data)
 
      }).catch((err)=>{
-      console.log(err)
+      alert(err)
      })
 
     }

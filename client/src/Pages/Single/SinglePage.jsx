@@ -59,7 +59,6 @@ useEffect(()=>{
 
       })
    }
-   console.log(posts)
   return (
     <div className={_.main}>
       {posts?.map((data)=>(

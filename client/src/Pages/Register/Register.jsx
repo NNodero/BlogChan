@@ -45,7 +45,6 @@ export default function Register() {
     const userimg = await upload()
      delete data.cfpassword;
      data.userimg =userimg
-     console.log(data)
       await axios.post('/register',data).then((res)=>{
        if(res.data.created === false){
         setmessage(res.data.message)

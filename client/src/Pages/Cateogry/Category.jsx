@@ -15,7 +15,7 @@ export default function Home() {
      await axios.get(`/${category}`).then((res)=>{
       setposta(res.data)
      }).catch((err)=>{
-      console.log(err)
+     alert(err)
      })
 
     }

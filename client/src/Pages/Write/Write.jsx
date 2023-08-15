@@ -74,9 +74,12 @@ const token = JSON.parse(sessionStorage.getItem("token"));
     },
       withCredentials: true,
     }).then((res)=>{
-     console.log(res)
+      res.data.changedRows >0 ?
+      seterr("Post Updated"): seterr("Edit your post first")
+
+     
     }).catch((err)=>{
-     console.log(err)
+      seterr("Something went wrong")
     }):
 
     await axios.post('/write', {
@@ -102,12 +105,10 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       else {
         seterr(res.data)
       }
-      console.log(res)
     
 
     }).catch((err)=>{
       seterr(err)
-      console.log(err)
 
     })
 
