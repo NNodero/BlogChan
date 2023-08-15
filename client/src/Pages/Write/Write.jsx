@@ -34,7 +34,6 @@ export default function Write() {
          setimg(res.data.key)
          res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
          setdisabled(true)
-         console.log(res.data.key)
          return res.data.key
        } catch (err) {
         alert("Something went wrong")
