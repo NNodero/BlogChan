@@ -25,7 +25,14 @@ export default function Write() {
 
  const upload =async ()=>{
       const formdata = new FormData()
-     formdata.append('image',file,Date.now() + '_'+ file.name)
+      if(formdata === '') {
+        formdata.append('image',file)
+
+      }
+      else{
+        formdata.append('image',file,Date.now() + '_'+ file.name)
+
+      }
     
      try {
       const res = await axios.post('/upload',formdata)

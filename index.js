@@ -183,7 +183,7 @@ app.get('/post',(req,res)=>{
 
 
 app.get('/post/:id',(req,res)=>{
-    const q= 'SELECT `uid`,`username`,`title`,`shortdes`,`description`,`img`,`userimg`,`category`,`date` FROM post JOIN user ON user.id = post.uid WHERE post.id = ?'
+    const q= 'SELECT `uid`,`username`,`title`,`shortdes`,`description`,`img`,`userimg`,`category`,`date`,`updatedate` FROM post JOIN user ON user.id = post.uid WHERE post.id = ?'
 
     db.query(q,[req.params.id],(err,result)=>{
         if(err) return res.json('Something is wrong on the server side')
