@@ -22,27 +22,29 @@ export default function Write() {
   const [cat,setcat] = useState(state?.category || '')
   const [err, seterr] = useState('')
   const [img,setimg] = useState(state?.img)
+  const[disabled, setdisabled] = useState(false)
 
  const upload =async ()=>{
+  
       const formdata = new FormData()
-      if(formdata === '') {
-        formdata.append('image',file)
 
-      }
-      else{
-        formdata.append('image',file,Date.now() + '_'+ file.name)
+      formdata.append('image',file,Date.now() + '_'+ file.name)
+      try {
+        const res = await axios.post('/upload',formdata)
+         setimg(res.data.key)
+         res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
+         setdisabled(true)
+         console.log(res.data.key)
+         return res.data.key
+       } catch (err) {
+        alert("Something went wrong")
+       }
 
-      }
+}
+
+
+  
     
-     try {
-      const res = await axios.post('/upload',formdata)
-       setimg(res.data.Location)
-       res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
-     } catch (errorss) {
-      seterr(errorss)
-     }
-      
-    }
 
 const setchange =(e)=>{
   setfile(e.target.files[0])
@@ -50,7 +52,7 @@ const setchange =(e)=>{
 
 
 
-const publish= async ()=>{
+const publish= async (e)=>{
   if(title === ''){
     seterr('Fill the title')
   }
@@ -93,7 +95,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       shortdes,
       description:des,
       category:cat,
-      img: await upload(),
+      img: img ,
       uid:userdata.id,
       date: moment(Date.now()).utc().format("YYYY-MM-DD HH:mm:ss"),    
     },{
@@ -117,7 +119,6 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       seterr(err)
 
     })
-
 }
 
 }
@@ -145,7 +146,11 @@ const token = JSON.parse(sessionStorage.getItem("token"));
 
 
           <div className={s.btnbox}>
-          {state? <div>{!file ?<button className={s.btn3} disabled >Update Image</button>: <button className={s.btn2} onClick={upload}>Update Image</button> }</div>: <></>}
+          {state? 
+          <div>{!file ?<button className={s.btn3} disabled >Update Image</button>: <button className={s.btn2} onClick={upload}>Update Image</button> }</div>: 
+          <div>{file === null? <button disabled className={s.btn3}>Upload Image</button>:  <button  disabled={disabled} className={disabled? s.btn3: s.btn2} onClick={upload} >Upload Image</button>}</div>
+          
+          }
 
            {state? <div><button className={s.btn2} onClick={publish}>Publish</button></div>:<></>}
 

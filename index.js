@@ -12,6 +12,8 @@ const multer = require('multer');
 const path = require('path');
 require("dotenv").config();
 const AWS = require('aws-sdk');
+require('aws-sdk/lib/maintenance_mode_message').suppress = true;
+
 
 
 
@@ -65,8 +67,8 @@ const upload = multer({
 
 app.post('/upload',upload.single('image'),(req,res)=>{
     const params = {
-        Bucket: process.env.AWS_BUCKET_NAME ,
-        Key:req.file.originalname,
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key:`post_image/${req.file.originalname}`,
         Body:req.file.buffer,
         ContentType:'image/png'
     }
@@ -76,7 +78,7 @@ app.post('/upload',upload.single('image'),(req,res)=>{
         res.json(err)
     }
     else{        
-        res.json(data)   
+        res.json(data)  
     }
     })
 
@@ -85,29 +87,6 @@ app.post('/upload',upload.single('image'),(req,res)=>{
 })
 
 
-// const verifyUser = (req,res,next)=>{
-//     const token = req.cookies.token;
-//     if(!token){
-//         res.json({Error:'You are not logged in'})
-//     }
-//     else{
-//         jwt.verify(token,"thisismyfirsttime",(err,user)=>{
-//             if(err){
-//                 return res.json("Token is invaliid")
-//             }
-//             else{
-//                req.user = user;
-//                 next();
-//           }
-//         })
-//     }
-
-// }
-
-
-// app.post('/logout',(req,res)=>{
-//     res.clearCookie('token').json('done')
-// })
 
 app.post('/register', (req,res)=>{
     const a = 'SELECT * FROM user WHERE username =?'
@@ -211,6 +190,17 @@ app.delete('/post/:id',(req,res)=>{
     jwt.verify(token,'thisismyfirsttime', (err,result)=>{
         if(err) return res.json('Token is not valid. Hence, you are not the user of this post ')
         const postid = req.params.id
+
+        const s  = 'SELECT img FROM post WHERE `id` = ? AND `uid` =?'
+        db.query(s,[postid, result.id],(err,data)=>{
+            if(data) {
+                const params = {
+                        Bucket: process.env.AWS_BUCKET_NAME ,
+                        Key:data[0].img,    
+                }
+                s3.deleteObject(params, () => {});
+            }
+        })
         const q  = 'DELETE FROM post WHERE `id` = ? AND `uid` =?'
 
         db.query(q,[postid, result.id],(err,data)=>{

@@ -22,7 +22,7 @@ export default function Menu() {
         <h1 style={{fontSize:20}}>Other posts you may like</h1>
         {post.map((data)=>(
             <div className={s.content} key={data.id}>
-                <div className={s.imgbox}>   {data.img? <img src={data.img} alt='mainimg' className={s.img}/> : <img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={s.img}/> }</div>
+                <div className={s.imgbox}>   {data.img? <img src={`https://blogchan.s3.ap-southeast-2.amazonaws.com/${data.img}`} alt='mainimg' className={s.img}/> : <img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={s.img}/> }</div>
                 <div className={s.title}><span>{data.title}</span></div>
                 <div className={s.buttonbox}><Link to={`/post/${data.id}`}><button className={s.button}>Read more</button></Link></div>  
             </div>

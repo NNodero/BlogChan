@@ -59,14 +59,13 @@ useEffect(()=>{
 
       })
    }
-   console.log(posts)
   return (
     <div className={_.main}>
       {posts?.map((data)=>(
          <div className={_.left} key={newID}>
        
          <div className={_.imagebox}>
-           {data.img? <img src={data.img} alt='mainimg' className={_.img}/> :<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={_.img}/> }
+           {data.img? <img src={`https://blogchan.s3.ap-southeast-2.amazonaws.com/${data.img}`} alt='mainimg' className={_.img}/> :<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={_.img}/> }
          </div>
          <div className={_.user} key={data.userid}>
               <div className={_.profilepicbox}><img src={require(`../../Assests/Images/profile.jpeg`)} alt='profilepic' className={_.profileimg}/></div>
