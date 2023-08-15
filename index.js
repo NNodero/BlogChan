@@ -20,7 +20,7 @@ app.use(express());
 // app.use(cors());
 
 app.use(cors({
-    origin:["https://blogchan.onrender.com", "http://localhost:3002"],
+    origin:["https://blogchan.onrender.com", "http://localhost:3000"],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
     credentials: true,
 

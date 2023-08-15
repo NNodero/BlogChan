@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import axios from 'axios';
 
-axios.defaults.baseURL ="https://blogchan-server.onrender.com"
+axios.defaults.baseURL ="http://localhost:3009"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
