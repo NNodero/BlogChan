@@ -11,9 +11,8 @@
     .container{
         // border: 1px solid;
         display: flex;
+        width: 80rem;
         gap: 9rem;
-        width: 65rem;
-
 
         &:nth-child(odd){
             flex-direction: row-reverse;

@@ -134,7 +134,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
           <div className={s.text}><span><b>Status:</b>{err === 'Successfully posted'? "Posted":"Draft"}</span></div>
           <div className={s.text}><span><b>Visibility:</b>Draft<b> (Comming Soon)</b></span></div>
            <input type="file" name="image" id='file' style={{display:'none'}} onChange={setchange}/>
-           <label className={s.text_upload} htmlFor='file'>Select Image</label>
+           <label className={s.text_upload} htmlFor='file'>Select Image to upload</label>
            
 
 
