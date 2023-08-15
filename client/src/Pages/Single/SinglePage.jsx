@@ -71,7 +71,7 @@ useEffect(()=>{
               <div className={_.profilepicbox}><img src={require(`../../Assests/Images/profile.jpeg`)} alt='profilepic' className={_.profileimg}/></div>
              <div className={_.username}>
               <span>{data.username}</span>
-              <span>Posted {moment(data.date).fromNow()}</span>
+              {data.updatedate? <span>Updated {moment(data.date).fromNow()}</span>:<span>Posted {moment(data.date).fromNow()}</span>}
             </div>
             {userdata.id === data.uid ? 
             <div className={_.iconss}><div className={_.edit}><span><Link to ={`/post/${newID}/edit`} state={posts[0]}><EditIcon sx={{cursor:'pointer'}}/></Link></span></div>

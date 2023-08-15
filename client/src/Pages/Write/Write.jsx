@@ -31,7 +31,6 @@ export default function Write() {
       const res = await axios.post('/upload',formdata)
        setimg(res.data.Location)
        res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
-       return res.data.Location
      } catch (errorss) {
       seterr(errorss)
      }
@@ -67,6 +66,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       category:cat,
       img:img,
       uid:userdata.id,
+      updatedate: moment(Date.now()).utc().format("YYYY-MM-DD HH:mm:ss")
     },{
       headers:{
       'Authorization': `Bearer ${token}`
@@ -88,7 +88,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       category:cat,
       img: await upload(),
       uid:userdata.id,
-      date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),    
+      date: moment(Date.now()).utc().format("YYYY-MM-DD HH:mm:ss"),    
     },{
       headers:{
       'Authorization': `Bearer ${token}`
