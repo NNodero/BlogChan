@@ -25,19 +25,18 @@ export default function Write() {
 
  const upload =async ()=>{
       const formdata = new FormData()
-     formdata.append('image',file)
+     formdata.append('image',file,Date.now() + '_'+ file.name)
     
      try {
       const res = await axios.post('/upload',formdata)
-       setimg(res.data.filename)
+       setimg(res.data.Location)
        res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
-       return res.data.filename
+       return res.data.Location
      } catch (errorss) {
       seterr(errorss)
      }
       
     }
-
 
 const setchange =(e)=>{
   setfile(e.target.files[0])

@@ -36,7 +36,7 @@ export default function Home() {
             <div className={style.btnbox}><Link to={`/post/${data.id}`}><button className={style.btn}>Read More</button></Link></div>
           </div>
           <div className={style.right}>
-            {data.img?<img src={require(`../../Assests/Images/${data.img}`)} alt='' className={style.img}/>:<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={style.img}/>}
+            {data.img?<img src={data.img} alt='' className={style.img}/>:<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={style.img}/>}
           </div>
          </div>
         ))}

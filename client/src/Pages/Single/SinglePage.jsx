@@ -65,10 +65,10 @@ useEffect(()=>{
          <div className={_.left} key={newID}>
        
          <div className={_.imagebox}>
-           {data.img? <img src={require(`../../Assests/Images/${data.img}`)} alt='mainimg' className={_.img}/> :<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={_.img}/> }
+           {data.img? <img src={data.img} alt='mainimg' className={_.img}/> :<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={_.img}/> }
          </div>
          <div className={_.user} key={data.userid}>
-              <div className={_.profilepicbox}>{data.userimg? <img src={require(`../../Assests/Images/${data.img}`)} alt='profilepic' className={_.profileimg}/>: <img src={require(`../../Assests/Images/profile.jpeg`)} alt='profilepic' className={_.profileimg}/>}</div>
+              <div className={_.profilepicbox}><img src={require(`../../Assests/Images/profile.jpeg`)} alt='profilepic' className={_.profileimg}/></div>
              <div className={_.username}>
               <span>{data.username}</span>
               <span>Posted {moment(data.date).fromNow()}</span>

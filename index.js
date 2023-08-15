@@ -10,7 +10,9 @@ const jwt = require('jsonwebtoken')
 const {createTokens} =require('./JWT.js');
 const multer = require('multer');
 const path = require('path');
- 
+require("dotenv").config();
+const AWS = require('aws-sdk');
+
 
 
 
@@ -46,47 +48,61 @@ app.listen(PORT,()=>{
 
 
 
-const storage = multer.diskStorage({
-    destination:(req, file, cb)=>{
-        cb(null, './client/src/Assests/Images')
-    },
-    filename:(req,file,cb)=>{
-        cb(null, Date.now()+ path.extname(file.originalname))
-    }
+
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
+  });
+  
+ const s3 = new AWS.S3();
+
+
+const upload = multer({
+    storage:multer.memoryStorage()
 })
 
-const upload = multer({storage:storage})
 
 app.post('/upload',upload.single('image'),(req,res)=>{
-    const file = req.file
-    if (!file){
-        res.json('no file')
+    const params = {
+        Bucket: process.env.AWS_BUCKET_NAME ,
+        Key:req.file.originalname,
+        Body:req.file.buffer,
+        ContentType:'image/png'
     }
-    else{
-        res.json(file)
+    s3.upload(params, (err,data)=>{
+ 
+    if (err){
+        res.json(err)
+    }
+    else{        
+        res.json(data)   
+    }
+    })
 
-        
-    }
+
+    
 })
 
-const verifyUser = (req,res,next)=>{
-    const token = req.cookies.token;
-    if(!token){
-        res.json({Error:'You are not logged in'})
-    }
-    else{
-        jwt.verify(token,"thisismyfirsttime",(err,user)=>{
-            if(err){
-                return res.json("Token is invaliid")
-            }
-            else{
-               req.user = user;
-                next();
-          }
-        })
-    }
 
-}
+// const verifyUser = (req,res,next)=>{
+//     const token = req.cookies.token;
+//     if(!token){
+//         res.json({Error:'You are not logged in'})
+//     }
+//     else{
+//         jwt.verify(token,"thisismyfirsttime",(err,user)=>{
+//             if(err){
+//                 return res.json("Token is invaliid")
+//             }
+//             else{
+//                req.user = user;
+//                 next();
+//           }
+//         })
+//     }
+
+// }
 
 
 // app.post('/logout',(req,res)=>{

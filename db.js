@@ -1,11 +1,12 @@
-const express = require('express')
-const mysql = require('mysql2')
+const express = require('express');
+const mysql = require('mysql2');
+require('dotenv').config();
 
 const db = mysql.createConnection({
-    host:'blogchan.cczk3ut0375u.ap-southeast-2.rds.amazonaws.com',
-    user:'nodero',
-    password:'Npams061!',
-    database:'Blogchan'
+    host:process.env.AWS_RDS_HOST,
+    user:process.env.AWS_RDS_USER,
+    password:process.env.AWS_RDS_PASSWORD,
+    database:process.env.AWS_RDS_DATABASE
 
 })
 
