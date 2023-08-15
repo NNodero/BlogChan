@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, {useState,CSSProperties } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import s from './write.module.scss'
@@ -7,6 +7,8 @@ import { LoginContext } from '../../Contexts/LoginContext';
 import axios from 'axios'
 import { useLocation, useParams } from 'react-router-dom';
 import moment from 'moment';
+import { TwoSeventyRing } from "react-svg-spinners";
+
 
 export default function Write() {
 
@@ -23,6 +25,8 @@ export default function Write() {
   const [err, seterr] = useState('')
   const [img,setimg] = useState(state?.img)
   const[disabled, setdisabled] = useState(false)
+  const [uploadloading, setuploadloading] = useState(false)
+  const [publishloading, setpublishloading] = useState(false)
 
  const upload =async ()=>{
   
@@ -30,20 +34,24 @@ export default function Write() {
 
       formdata.append('image',file,Date.now() + '_'+ file.name)
       try {
+        setuploadloading(true)
         const res = await axios.post('/upload',formdata)
          setimg(res.data.key)
          res.data==='no file' ? seterr(`Upload new image first`):seterr('Image Uploaded')
          setdisabled(true)
+         setuploadloading(false)
+
          return res.data.key
        } catch (err) {
         alert("Something went wrong")
        }
 
+
 }
 
 
   
-    
+
 
 const setchange =(e)=>{
   setfile(e.target.files[0])
@@ -65,6 +73,7 @@ const publish= async (e)=>{
   }
   else{
 const token = JSON.parse(sessionStorage.getItem("token"));
+setpublishloading(true)
 
    
     state? await axios.put(`/update/${id}`,{
@@ -118,14 +127,16 @@ const token = JSON.parse(sessionStorage.getItem("token"));
       seterr(err)
 
     })
+    setpublishloading(false)
+
 }
+
 
 }
   
 
   return (
     <div className={s.maincontainer}>
-      
       <div className={s.left}>
         <div className={s.title}><input placeholder='Title' value={title} required className={s.input}  onChange={e=>settitle(e.target.value)}/></div>
         <div className={s.title}><input placeholder='Short Description' value={shortdes} required className={s.input}  onChange={e=>setshortdes(e.target.value)}/></div>
@@ -147,13 +158,14 @@ const token = JSON.parse(sessionStorage.getItem("token"));
           <div className={s.btnbox}>
           {state? 
           <div>{!file ?<button className={s.btn3} disabled >Update Image</button>: <button className={s.btn2} onClick={upload}>Update Image</button> }</div>: 
-          <div>{file === null? <button disabled className={s.btn3}>Upload Image</button>:  <button  disabled={disabled} className={disabled? s.btn3: s.btn2} onClick={upload} >Upload Image</button>}</div>
+          <div>{file === null? <button disabled className={s.btn3}>Upload Image </button>:  <button  disabled={disabled} className={disabled? s.btn3: s.btn2} onClick={upload}>
+            {uploadloading? <TwoSeventyRing /> : "Upload Image"}</button>}</div>
           
           }
 
            {state? <div><button className={s.btn2} onClick={publish}>Publish</button></div>:<></>}
 
-            {!state ? <div>{err ==='Successfully posted' ?<button className={s.btn3}  disabled>Posted</button> :<button className={s.btn2} onClick={publish}>Publish</button>}</div>:<></>}
+            {!state ? <div>{err ==='Successfully posted' ?<button className={s.btn3}  disabled>Posted</button> :<button className={s.btn2} onClick={publish}>{publishloading? <TwoSeventyRing /> : "Publish"}</button>}</div>:<></>}
           </div>
 
           {err? <div style={{color:'red', fontSize:'13px'}}>{err}</div>: <></>}
