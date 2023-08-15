@@ -261,13 +261,15 @@ app.put('/update/:id',(req,res)=>{
         if(err) return res.json('Token invalid')
 
         const p = req.params.id;
-        const q = 'UPDATE `post` SET `title` = ?, `shortdes` = ?, `description` = ?, `img` = ?, `category` = ? WHERE `id` = ? AND `uid` = ?'
+        const q = 'UPDATE `post` SET `title` = ?, `shortdes` = ?, `description` = ?, `img` = ?, `category` = ?, `updatedate` = ? WHERE `id` = ? AND `uid` = ?'
         const v = [
             req.body.title,
             req.body.shortdes,
             req.body.description,
             req.body.img,
             req.body.category,
+            req.body.updatedate,
+
         ]
 
         db.query(q,[...v,p,result.id],(err,result)=>{
