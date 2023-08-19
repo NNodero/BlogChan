@@ -29,7 +29,7 @@ export default function Home() {
          <div className={style.container} key={data.id}>
           <div className={style.left}>
             <div className={style.title}><h1>{data.title}</h1></div>
-            <div className={style.desc}><p>{data.shortinfo}</p></div>
+            <div className={style.desc}><p>{data.shortdes}</p></div>
             <div className={style.btnbox}><Link to={`/post/${data.id}`}><button className={style.btn}>Read More</button></Link></div>
           </div>
           <div className={style.right}>
