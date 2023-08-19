@@ -23,6 +23,8 @@ function App() {
   const[token,settoken]= useState()
 
   const [ backtotop ,setbacktotop] =useState(false)
+  const [view,setview] = useState(0)
+
 
   useEffect(()=>{
     window.addEventListener('scroll',()=>{
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <LoginContext.Provider value={{userdata,setuserdata,token,settoken}}>
+      <LoginContext.Provider value={{userdata,setuserdata,token,settoken,view,setview}}>
         <Router>
           <Navbar/>
          

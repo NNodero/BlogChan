@@ -9,12 +9,14 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 
 import axios from 'axios'
 import Loading from '../../Components/Loading/Loading'
+import { LoginContext } from '../../Contexts/LoginContext' 
+import { useContext } from 'react'
 
 export default function Home() {
   const [post, setpost] =useState([{}])
   const [loading,setloading] = useState(false)
-  const [view,setview] = useState(0)
 
+  const {view, setview} = useContext(LoginContext)
 
 
 
