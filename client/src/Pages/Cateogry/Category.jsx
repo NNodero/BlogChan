@@ -10,6 +10,7 @@ export default function Home() {
   const {category} = useParams()
   const [posta, setposta] =useState([{}])
 
+
   useEffect(()=>{
     const fetchpost = async ()=>{
      await axios.get(`/${category}`).then((res)=>{
@@ -17,7 +18,6 @@ export default function Home() {
      }).catch((err)=>{
      alert(err)
      })
-
     }
     fetchpost()
   },[category])

@@ -5,29 +5,34 @@ import { Link } from 'react-router-dom'
 
 
 import axios from 'axios'
+import Loading from '../../Components/Loading/Loading'
 
 export default function Home() {
   const [post, setpost] =useState([{}])
-
+  const [loading,setloading] = useState(false)
 
 
 
 
   useEffect(()=>{
     const fetchpost = async ()=>{
+      setloading(true)
      await axios.get("post").then((res)=>{
       setpost(res.data)
 
      }).catch((err)=>{
       alert(err)
      })
+     setloading(false)
 
     }
     fetchpost()
   },[])
    
   return (
-    <div className={style.body}>
+    <>
+    {loading? <Loading/>:
+    <div className={style.body}> 
       {post.map((data)=>(
          <div className={style.container} key={data.id}>
           <div className={style.left}>
@@ -43,5 +48,7 @@ export default function Home() {
       
 
     </div>
+      }
+    </>
   )
 }

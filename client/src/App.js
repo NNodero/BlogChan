@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { LoginContext } from './Contexts/LoginContext';
 import Category from './Pages/Cateogry/Category'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Loading from './Components/Loading/Loading';
 
 
 
@@ -52,6 +53,8 @@ function App() {
             {userdata.username ? <Route path='/write' element={<Write/>}/>  : <Route path='/login' element={<Login/>}/>}
             <Route path='/:category' element={<Category/> }/>
             <Route path='/post/:id/edit' element={<Write/>}/>
+            <Route path='/loading' element={<Loading/>}/>
+
 
 
           </Routes>
