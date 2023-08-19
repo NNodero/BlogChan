@@ -1,4 +1,28 @@
+.viewborder{
+// border: 1px solid red;
+margin: 0px 19rem;
+padding-top: 10px;
 
+    .view{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    gap:10px;
+
+      .list{
+        &:hover{
+            transform: scale(1.1) 
+        }
+          
+        }
+        .grid{
+            &:hover{
+                transform: scale(1.1) 
+            }
+              
+            }
+    }
+}
 
 .body{
 
@@ -8,7 +32,7 @@
     align-items: center; 
     gap: 9rem;   
 
-    .container{
+    .onecontainer{
         // border: 1px solid;
         display: flex;
         width: 80rem;
@@ -87,7 +111,10 @@
         }
     }
    
+   
 }
+
+
 @media only screen and (max-width:1600px) {
    
 
