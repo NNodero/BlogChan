@@ -1,7 +1,7 @@
 .gridbody{
 
     display: grid;
-    grid-template-columns: repeat(3,28rem);
+    grid-template-columns: repeat(3,min-content);
     row-gap: 1rem;
     justify-content: center;
     padding-top: 2rem;
@@ -50,21 +50,35 @@
 
 
             }
-            .btn{
-                border: 1px solid rgb(102, 117, 131);
-                background-color:rgb(255, 255, 255) ;
-                border-radius: 10px;
-
-                padding: 8px 10px;
-                font-size: 12px;
-                color: rgb(102, 117, 131);
-                cursor: pointer;
-                &:hover{
-                    background-color:rgb(102, 117, 131);
-                    color: rgb(255, 255, 255);
-
+            .readmore{
+                display: flex;
+                justify-content:space-between;
+                .btn{
+                    border: 1px solid rgb(102, 117, 131);
+                    background-color:rgb(255, 255, 255) ;
+                    border-radius: 10px;
+    
+                    padding: 8px 10px;
+                    font-size: 12px;
+                    color: rgb(102, 117, 131);
+                    cursor: pointer;
+                    &:hover{
+                        background-color:rgb(102, 117, 131);
+                        color: rgb(255, 255, 255);
+    
+                    }
                 }
-            }
+                .arrowdown{
+                    cursor: pointer;
+                    transition: all 0.5s;
+                    &:hover{    
+                        color:rgb(102, 117, 131);
+                        transform: scale(1.2);
+                        transition: transform 0.3s;
+                    }
+                }
+        }
+            
         }
         
     }
@@ -143,8 +157,8 @@
                     }
                     .arrowdown{
                         cursor: pointer;
-
-                        &:hover{
+                        transition: all 0.5s;
+                        &:hover{    
                             color:rgb(102, 117, 131);
                             transform: scale(1.2);
                             transition: transform 0.3s;
