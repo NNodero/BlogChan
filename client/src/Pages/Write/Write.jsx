@@ -138,8 +138,8 @@ setpublishloading(true)
   return (
     <div className={s.maincontainer}>
       <div className={s.left}>
-        <div className={s.title}><input placeholder='Title' value={title} required className={s.input}  onChange={e=>settitle(e.target.value)}/></div>
-        <div className={s.title}><input placeholder='Short Description' value={shortdes} required className={s.input}  onChange={e=>setshortdes(e.target.value)}/></div>
+        <div className={s.title}><input placeholder='Title - 60 Character' value={title} required className={s.input}  onChange={e=>settitle(e.target.value)}/></div>
+        <div className={s.title}><input placeholder='Short Description - 160 Character' value={shortdes} required className={s.input}  onChange={e=>setshortdes(e.target.value)}/></div>
 
         <div><ReactQuill theme="snow" className={s.desc} value={des} onChange={setdes}/></div>
 
