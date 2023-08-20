@@ -119,53 +119,15 @@ padding-top: 10px;
    
 
 .body{
-
-    padding: 5rem 0rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 8rem;   
-
-    .container{
+    .onecontainer{
         // border: 1px solid;
         width: 65rem;
         display: flex;
         gap: 6rem;
 
-        &:nth-child(odd){
-            flex-direction: row-reverse;
-            .right{
-                &::after{
-                    content: '';
-                    height: 100%;
-                    background-color:rgb(211, 214, 216);
-                    width: 100%;
-                    position: absolute;
-                    top: -20px;
-                    left: -20px;
-                    z-index: -1;
-                }
-            } 
-        }
-        &:nth-child(even){
-            .right{
-                &::after{
-                    content: '';
-                    height: 100%;
-                    background-color: rgb(211, 214, 216);
-                    width: 100%;
-                    position: absolute;
-                    top: -20px;
-                    left: 20px;
-                    z-index: -1;
-                }
-            } 
-        }
+        
         .left{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-       
+         
             .title{
                 font-size: 18px;
                 font-weight: bolder;
@@ -174,22 +136,11 @@ padding-top: 10px;
             .desc{
                 font-size: 14px;
             }
-            .btn{
-                border: 1px solid rgb(102, 117, 131);
-                background-color:white ;
-                padding: 10px 20px;
-                color: rgb(102, 117, 131);
-                cursor: pointer;
-                &:hover{
-                    background-color:rgb(102, 117, 131);
-                    color: rgb(255, 255, 255);
-
-                }
-            }
+            
         }
         .right{
             // border: 2px solid red;
-            width: 530px;
+            width: 330px;
             height: 340px;
             position: relative;
        

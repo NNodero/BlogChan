@@ -11,10 +11,14 @@ import axios from 'axios'
 import Loading from '../../Components/Loading/Loading'
 import { LoginContext } from '../../Contexts/LoginContext' 
 import { useContext } from 'react'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 export default function Home() {
   const [post, setpost] =useState([{}])
   const [loading,setloading] = useState(false)
+  const [shortdes,setshortdes] = useState(0)
+
 
   const {view, setview} = useContext(LoginContext)
 
@@ -42,7 +46,9 @@ export default function Home() {
   const list =()=>{
     setview(0)
   }
-   
+  const readmore =(id)=>{
+    setshortdes(id)
+  }
    
   return (
     <>
@@ -56,15 +62,19 @@ export default function Home() {
     <div>
       {view === 1 ? 
      <div className={gridstyle.gridbody}> 
-        {post.map((data)=>(
-          <div className={gridstyle.twocontainer} key={data.id}>
+        {post.map((data,i)=>(
+          <div className={gridstyle.twocontainer} key={i}>
              <div className={gridstyle.right}>
               {data.img?<img src={`https://blogchan.s3.ap-southeast-2.amazonaws.com/${data.img}`} alt='' className={gridstyle.img}/>:<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={style.img}/>}
             </div>
             <div className={gridstyle.left}>
               <div className={gridstyle.title}><h1>{data.title}</h1></div>
-              <div className={gridstyle.desc}><p>{data.shortdes}</p></div>
-              <div className={gridstyle.btnbox}><Link to={`/post/${data.id}`}><button className={gridstyle.btn}>Read More</button></Link></div>
+             {shortdes ===data.id ?<div className={gridstyle.desc}><p>{data.shortdes}</p></div>:<></>}
+              <div className={gridstyle.readmore}>
+                <div className={gridstyle.btnbox}><Link to={`/post/${data.id}`}><button className={gridstyle.btn}>Read More</button></Link></div>
+                {shortdes=== data.id ?<div className={gridstyle.arrowdown} onClick={()=>readmore(0)}><KeyboardArrowUpIcon fontSize='large'/></div>:
+                 <div className={gridstyle.arrowdown} onClick={()=>readmore(data.id)}><KeyboardArrowDownIcon fontSize='large'/></div>}
+              </div>
             </div>
            
           </div>
