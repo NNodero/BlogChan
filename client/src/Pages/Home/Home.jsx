@@ -65,7 +65,7 @@ export default function Home() {
         {post.map((data,i)=>(
           <div className={gridstyle.twocontainer} key={i}>
              <div className={gridstyle.right}>
-              {data.img?<img src={`https://blogchan.s3.ap-southeast-2.amazonaws.com/${data.img}`} alt='' className={gridstyle.img}/>:<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={style.img}/>}
+              {data.img?<img src={`https://blogchan.s3.ap-southeast-2.amazonaws.com/${data.img}`} alt='' className={gridstyle.img}/>:<img src={require(`../../Assests/Images/noimage.jpg`)} alt='mainimg' className={gridstyle.img}/>}
             </div>
             <div className={gridstyle.left}>
               <div className={gridstyle.title}><h1>{data.title}</h1></div>
