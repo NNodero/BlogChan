@@ -41,7 +41,7 @@ const updateauth = ()=>{
     <div className={style.navbar}>
        <div className={style.container}>
         <div className={style.left}>
-         <Link to={'/'}><img src={logo} alt='logo' style={{width:150}}/></Link>
+         <Link to={'/'}><img src={logo} alt='logo' style={{width:'100%'}}/></Link>
         </div>
         <div className={style.right}>
         <Link to='/art' style={{textDecoration:'none'}}><div className={style.text}><span>Art</span></div></Link>

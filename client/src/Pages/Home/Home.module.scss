@@ -153,3 +153,117 @@ padding-top: 10px;
     }
 }
 }
+
+@media screen and (max-width:515px) {
+    *{
+        // border: 1px solid;
+    }
+    .viewborder{
+        // border: 1px solid red;
+       display: none;
+        
+            .view{
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+            gap:10px;
+        
+              .list{
+                &:hover{
+                    transform: scale(1.1) 
+                }
+                  
+                }
+                .grid{
+                    &:hover{
+                        transform: scale(1.1) 
+                    }
+                      
+                    }
+            }
+        }
+        
+        .body{
+
+            padding: 2rem 0rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            gap: 4rem;   
+        
+            .onecontainer{
+                // border: 1px solid;
+                display: flex;
+                align-items: center;
+                flex-direction: column-reverse;
+                width: 100%;
+                gap: 1rem;
+        
+                &:nth-child(odd){
+                    flex-direction: column-reverse;
+                    .right{
+                        &::after{
+                            display: none;
+                           
+                        }
+                    } 
+                }
+                &:nth-child(even){
+                    
+                    .right{
+                        &::after{
+                            display: none;
+                            
+                        }
+                    } 
+                }
+                .left{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    // border:1px solid;
+                    flex: 0%;
+                    width: 21rem;
+                    gap:14px;
+
+               
+                    .title{
+                        font-size: 10px;
+                        font-weight: bolder;
+                        font-family: merrifontblack;
+                    }
+                    .desc{
+                        display: none;
+                    }
+                    .btn{
+                        border: 1px solid rgb(102, 117, 131);
+                        background-color:white ;
+                        padding:10px 10px;
+                        color: rgb(102, 117, 131);
+                        cursor: pointer;
+                        &:hover{
+                            background-color:rgb(102, 117, 131);
+                            color: rgb(255, 255, 255);
+        
+                        }
+                    }
+                }
+                .right{
+                    // border: 2px solid red;
+                    width: 350px;
+                    position: relative;
+               
+                    .img{
+                      width: 100%;
+                        height: 100%;
+                        object-fit:contain ;           
+                     }
+                     
+                }
+            }
+           
+           
+        }
+        
+    
+}

@@ -171,3 +171,18 @@
     }
     
 }
+
+@media screen and (max-width:515px) {
+    .gridbody{
+
+        display: none;
+        grid-template-columns: repeat(1,min-content);
+        row-gap: 1rem;
+        justify-content: center;
+        padding-top: 10px;
+       
+    
+    }
+    
+    
+}
