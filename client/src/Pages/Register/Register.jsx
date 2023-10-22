@@ -69,7 +69,7 @@ export default function Register() {
         <input className='input'  type='phone' placeholder='phone'{...register('phone')}/>
         <input className='input'  type='password' placeholder='password'{...register('password')}/>
         <input className='input'  type='password' placeholder='Confirm password'{...register('cfpassword')}/>
-        <input type="file" name="image" id='file'  onChange={setchange}/>
+        <input type="file" name="image" id='file'  onChange={setchange} style={{display:'none'}}/>
 
         <button>Submit</button>
        {message? <div className='message'>{message}</div>: <></>}
