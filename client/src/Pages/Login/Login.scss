@@ -48,3 +48,56 @@ $secondaryclr: red;
 
     }
 }
+
+@media screen and (max-width:515px) {
+
+.auth{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color: white;
+    .loginform{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        gap: 26px;
+        justify-content: center;
+        height: 29rem;
+        width: 90%;
+        margin-bottom: 10rem;
+        align-items: center;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+                span{
+            font-size: 30px;
+         }
+        .inputlogin{
+
+            height: 3rem;
+            border:none;
+            border-bottom: 1px solid gray;
+            width: 80%;
+        }
+        button{
+            background-color: white;
+            width: 18.5rem;
+            height: 3rem;
+            cursor: pointer;
+
+        }
+        .error{
+            color: red;
+            font-size: 14px;
+        }
+        .signup{
+            text-decoration: none;
+        
+        }
+
+
+
+    }
+}
+    
+}
