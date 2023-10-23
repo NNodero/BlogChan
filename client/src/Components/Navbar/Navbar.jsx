@@ -49,16 +49,16 @@ const updateauth = ()=>{
          <Link to={'/'}><img src={logo} alt='logo' style={{width:'100%'}}/></Link>
         </div>
         <div className={navbar? 'right' :'right hide'} >
-        <Link to='/art' style={{textDecoration:'none'}}><div className='text'><span>Art</span></div></Link>
-          <Link to='/science'style={{textDecoration:'none'}}><div className='text'><span >Science</span> </div></Link>
+        <Link to='/art' style={{textDecoration:'none'}}><div className='text' ><span  onClick={()=>setnavbar(false)}>Art</span></div></Link>
+          <Link to='/science'style={{textDecoration:'none'}}><div className='text'><span   onClick={()=>setnavbar(false)}>Science</span> </div></Link>
        
-          <Link to='/technology' style={{textDecoration:'none'}}><div className='text'><span>Technology</span></div></Link>
-          <Link to='/cinema' style={{textDecoration:'none'}}><div className='text'><span>Cinema</span></div></Link>
-        <Link to='/design' style={{textDecoration:'none'}}> <div className='text'><span >Design</span></div></Link>
+          <Link to='/technology' style={{textDecoration:'none'}}><div className='text'><span  onClick={()=>setnavbar(false)}> Technology</span></div></Link>
+          <Link to='/cinema' style={{textDecoration:'none'}}><div className='text'><span  onClick={()=>setnavbar(false)}>Cinema</span></div></Link>
+        <Link to='/design' style={{textDecoration:'none'}}> <div className='text'><span  onClick={()=>setnavbar(false)} >Design</span></div></Link>
           {userdata ? <span className='user'>{userdata.username} </span>: <></>}
 
-         {!userdata ? <><Link to='/login' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}>Login</span></div></Link>
-          <Link to='/register' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}>Register</span></div></Link> </> :
+         {!userdata ? <><Link to='/login' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}  onClick={()=>setnavbar(false)}>Login</span></div></Link>
+          <Link to='/register' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}  onClick={()=>setnavbar(false)}>Register</span></div></Link> </> :
 
          <>
            <span >
