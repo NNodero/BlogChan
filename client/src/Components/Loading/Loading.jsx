@@ -8,7 +8,7 @@ export default function Loading() {
         <div className='blackscreen'>
                <div className='loader'>
                 <div><BarsScale color="white" width='4rem' height="4rem"/> </div>
-                <div className='loader-text'> Please wait, I'm using free server</div>
+                <div className='loader-text'> Please wait, I'm hosting on free server</div>
                </div>
         </div>
     </div>

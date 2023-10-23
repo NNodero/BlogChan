@@ -159,32 +159,11 @@ padding-top: 10px;
         // border: 1px solid;
     }
     .viewborder{
-        // border: 1px solid red;
-       display: none;
-        
-            .view{
-            display: flex;
-            justify-content: flex-end;
-            cursor: pointer;
-            gap:10px;
-        
-              .list{
-                &:hover{
-                    transform: scale(1.1) 
-                }
-                  
-                }
-                .grid{
-                    &:hover{
-                        transform: scale(1.1) 
-                    }
-                      
-                    }
-            }
+       display: none; 
         }
         
         .body{
-
+            width: 100%;
             padding: 2rem 0rem;
             display: flex;
             flex-direction: column;
@@ -197,7 +176,7 @@ padding-top: 10px;
                 align-items: center;
                 flex-direction: column-reverse;
                 width: 100%;
-                gap: 1rem;
+                gap: 0.5rem;
         
                 &:nth-child(odd){
                     flex-direction: column-reverse;

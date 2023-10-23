@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import logo from '../../Assests/Logo/BlogChan.png'
-import style from './Navbar.module.scss'
+import './Navbar.scss'
 import {Link} from 'react-router-dom'
 import { LoginContext } from '../../Contexts/LoginContext' 
 import { useContext } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from "react-router-dom"
+import DehazeIcon from '@mui/icons-material/Dehaze';
 
 
 export default function Navbar() {
 
   const {userdata, setuserdata} = useContext(LoginContext)
   const [open, setopen] = useState(false)
+  const [navbar, setnavbar] = useState(false)
+
   
   const nav = useNavigate()
 
@@ -37,42 +40,43 @@ const updateauth = ()=>{
       window.location.reload()
    
   }
+
+
   return (
-    <div className={style.navbar}>
-       <div className={style.container}>
-        <div className={style.left}>
+    <div className='navbar'>
+       <div className='container'>
+        <div className='left'>
          <Link to={'/'}><img src={logo} alt='logo' style={{width:'100%'}}/></Link>
         </div>
-        <div className={style.right}>
-        <Link to='/art' style={{textDecoration:'none'}}><div className={style.text}><span>Art</span></div></Link>
-          <Link to='/science'style={{textDecoration:'none'}}><div className={style.text}><span >Science</span> </div></Link>
+        <div className={navbar? 'right' :'right hide'} >
+        <Link to='/art' style={{textDecoration:'none'}}><div className='text'><span>Art</span></div></Link>
+          <Link to='/science'style={{textDecoration:'none'}}><div className='text'><span >Science</span> </div></Link>
        
-          <Link to='/technology' style={{textDecoration:'none'}}><div className={style.text}><span>Technology</span></div></Link>
-          <Link to='/cinema' style={{textDecoration:'none'}}><div className={style.text}><span>Cinema</span></div></Link>
-        <Link to='/design' style={{textDecoration:'none'}}> <div className={style.text}><span >Design</span></div></Link>
-          {userdata ? <span className={style.user}>{userdata.username} </span>: <></>}
+          <Link to='/technology' style={{textDecoration:'none'}}><div className='text'><span>Technology</span></div></Link>
+          <Link to='/cinema' style={{textDecoration:'none'}}><div className='text'><span>Cinema</span></div></Link>
+        <Link to='/design' style={{textDecoration:'none'}}> <div className='text'><span >Design</span></div></Link>
+          {userdata ? <span className='user'>{userdata.username} </span>: <></>}
 
-         {!userdata ? <><Link to='/login' style={{textDecoration:'none'}}> <div><span className={style.text}>Login</span></div></Link>
-          <Link to='/register' style={{textDecoration:'none'}}> <div><span className={style.text}>Register</span></div></Link> </> :
+         {!userdata ? <><Link to='/login' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}>Login</span></div></Link>
+          <Link to='/register' style={{textDecoration:'none'}}> <div><span className='text' style={{color:'blue'}}>Register</span></div></Link> </> :
 
          <>
            <span >
-            <Link to='/write' style={{textDecoration:'none'}}><span className={style.text}>Write</span></Link>
+            <Link to='/write' style={{textDecoration:'none'}}><span className='text'>Write</span></Link>
           </span>
            <div >
-            <MoreVertIcon onClick={opens} className={style.text} fontSize='inherit'/>
-              <div className={open? style.profiles: style.profile}>
+            <MoreVertIcon onClick={opens} className='text' fontSize='inherit'/>
+              <div className={open? 'profiles' : 'profile'}>
 
-                <li className={style.user}>Profile</li>
-                <li className={style.user} onClick={updateauth}>Logout</li>
+                <li className='user'>Profile</li>
+                <li className='user' onClick={updateauth}>Logout</li>
 
               </div>
               </div>
 
             </>}
-
-
         </div>
+        <div className='smallmenu' onClick={()=>setnavbar((prev)=>!prev)}><DehazeIcon fontSize='medium'/></div>
        </div>
     </div>
   )

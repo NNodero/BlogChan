@@ -69,6 +69,9 @@
                 }
                   
              }
+             .smallmenu{
+                display: none;
+             }
         }
 }
 @media screen and (max-width:1600px) {
@@ -109,40 +112,51 @@
 
 @media screen and (max-width: 515px) {
     .navbar{
-        padding:0px 20px;
+        padding:0px;
         align-items: center;
         
 
         background-color: rgb(255, 255, 255);
-        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-        .container{
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;        .container{
             // border: 1px solid;
             display: flex;
             height: 4rem;
-
-             justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            align-items:  flex-start;
             position: relative;
+            padding:0px 30px;
+
 
             .left{
-                width: 120px
-                
-
+                width: 120px;
             };
 
              .right{
                 display: flex;
-                gap: 10px;
+                position: absolute;
+                gap: 30px;
+                flex-direction: column;
+                z-index: 1;
+                background-color: white;
+                width: 100%;
+                left:0;
+                top:100%;
+                // border: 1px solid;
+                align-items: center;
+                padding: 20px 0px;
+                box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
-                
+
              
                 .text{
-                    display: none;
+                    display: flex;
                     color: rgb(0, 0, 0);
                     text-decoration: none;
                     cursor: pointer;
                     &:hover{
                         transition: transform 0.1s;
-                        transform: scale(1.1);
+                        transform: scale(1);
                     }
                 
 
@@ -182,6 +196,15 @@
             
                 }
                   
+             }
+             .hide{
+                display: none;
+             }
+           
+             .smallmenu{
+                display: block;
+                position: absolute;
+                right: 30px;
              }
         }
 }
